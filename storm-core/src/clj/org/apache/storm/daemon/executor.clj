@@ -657,11 +657,6 @@
 
             (if (and (= curr-count (.get emitted-count)) active?)
               (do (.increment empty-emit-streak)
-                (if (or (.isFull transfer-queue) throttle-on reached-max-spout-pending)
-                  (log-message "fiberhome tornado : transfer-queue  : " (.isFull transfer-queue) " throttle-on : " throttle-on
-
-                               " reached-max-spout-pending : " reached-max-spout-pending)
-                  )
                   (.emptyEmit spout-wait-strategy (.get empty-emit-streak))
                   ;; update the spout throttling metrics
                   (if throttle-on
